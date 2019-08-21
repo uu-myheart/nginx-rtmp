@@ -9,13 +9,14 @@ RUN apt-get update \
 	&& ./configure --prefix=/nginx --add-module=/nginx-rtmp-module --with-http_ssl_module \
 	&& make && make install \
 	&& cp /nginx-rtmp-module/stat.xsl /nginx/html \
+	&& apt-get remove -y build-essential libpcre3-dev libssl-dev zlib1g-dev \
 	&& apt-get -y autoremove \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /nginx-rtmp-module /nginx-1.17.3 nginx-1.17.3.tar.gz
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /nginx-rtmp-module /nginx-1.17.3 /nginx-1.17.3.tar.gz
 
 COPY nginx.conf /nginx/conf/nginx.conf
 
-EXPOSE 80
+EXPOSE 80 1935
 
 CMD ["/nginx/sbin/nginx", "-g", "daemon off;"]
 
