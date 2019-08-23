@@ -9,6 +9,8 @@ RUN apt-get update \
 	&& ./configure --prefix=/nginx --add-module=/nginx-rtmp-module --with-http_ssl_module \
 	&& make && make install \
 	&& cp /nginx-rtmp-module/stat.xsl /nginx/html \
+	&& ln -sf /dev/stdout /nginx/logs/access.log \
+    && ln -sf /dev/stderr /nginx/logs/error.log \
 	&& apt-get remove -y build-essential libpcre3-dev libssl-dev zlib1g-dev \
 	&& apt-get -y autoremove \
     && apt-get clean \

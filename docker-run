@@ -1,7 +1,3 @@
-docker run -it \
-	--name rtmp \
-	-p 1935:1935 \
-	-p 80:80 \
-	ubuntu bash
+docker run --name=rtmp -d -p 80:80 -p 1935:1935 uumyheart/nginx-rtmp
 
-	ffmpeg -re -i /Users/Garan/Movies/design-patterns-in-php/05-The\ Chain\ of\ Responsibility.mp4 -vprofile baseline -vcodec copy -acodec copy -strict -2 -f flv rtmp://localhost/app/live
+ffmpeg -re -i /Users/Garan/Movies/design-patterns-in-php/05-The\ Chain\ of\ Responsibility.mp4 -vprofile baseline -vcodec copy -acodec copy -strict -2 -f flv rtmp://localhost/app/live
