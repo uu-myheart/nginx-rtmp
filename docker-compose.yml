@@ -1,0 +1,13 @@
+version: '3'
+services:
+  nginx-rtmp:
+    image: uumyheart/nginx-rtmp
+    ports:
+      - 80:80
+      - 1935:1935
+    volumes:
+      - ./nginx.conf:/nginx/conf/nginx.conf
+networks:
+  default:
+    external:
+      name: my_bridge  
